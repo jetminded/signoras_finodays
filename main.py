@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import pandas as pd
 import requests
 result = []
 for j in range(1, 55):
@@ -41,22 +42,23 @@ for j in range(1, 55):
                     amount_of_balcony = offer_soup('span', class_='a10a3f92e9--value--3Ftu5')[i].text.split()[0]
                 i += 1
             flat = {}
-            flat['underground_station'] = underground_station
-            flat['time_to_walk'] = time_to_walk
-            flat['price'] = price
-            flat['total_square'] = total_square
-            flat['kitchen_square'] = kitchen_square
-            flat['floor'] = floor
-            flat['amount_of_floors'] = amount_of_floors
-            flat['year_of_building'] = year_of_building
-            flat['height'] = height
-            flat['renovation'] = renovation
-            flat['wall_material'] = wall_material
-            flat['view'] = view
-            flat['amount_of_balcony'] = amount_of_balcony
+            flat[0] = underground_station
+            flat[1] = time_to_walk
+            flat[2] = price
+            flat[3] = total_square
+            flat[4] = kitchen_square
+            flat[5] = floor
+            flat[6] = amount_of_floors
+            flat[7] = year_of_building
+            flat[8] = height
+            flat[9] = renovation
+            flat[10] = wall_material
+            flat[11] = view
+            flat[12] = amount_of_balcony
             result.append(flat)
         except:
             print('lol')
-print(result)
-print(len(result))
 
+print(len(result))
+dataset = pd.DataFrame(result, columns=['underground_station', 'time_to_walk', 'price', 'total_square', 'kitchen_square', 'floor', 'amount_of_floors', 'year_of_building', 'height', 'renovation', 'wall_material', 'view', 'amount_of_balcony'])
+dataset.to_csv('dataset.csv', index=False)
