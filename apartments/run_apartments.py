@@ -15,8 +15,5 @@ def apartments_predict(walls_material, floor_number, floors_total, total_area, k
         'azimuth': [azimuth]
     }
     df = pd.DataFrame(data)
-    print(model.predict(df)[0])
-
-
-apartments_predict('panel', 16, 17.0, 55.0, 9.2, 17568.0, 304.0)
+    return model.predict(df)[0]
 
